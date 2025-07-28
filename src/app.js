@@ -101,6 +101,96 @@ app.get('/api/core', (req, res) => {
 })
 
 /**
+ * Rotas de compatibilidade para frontend
+ */
+
+// Rota para obter saldo do usuário
+app.get('/api/user/balance', generalLimiter, async (req, res) => {
+  try {
+    // Simulação temporária - substitua pela lógica real de autenticação
+    res.json({
+      success: true,
+      data: {
+        balance: 0.00,
+        currency: 'BRL',
+        last_updated: new Date().toISOString()
+      }
+    })
+  } catch (error) {
+    logger.error('Erro ao obter saldo:', error)
+    res.status(500).json({
+      success: false,
+      message: 'Erro ao obter saldo'
+    })
+  }
+})
+
+// Rota para informações do usuário
+app.get('/api/user', generalLimiter, async (req, res) => {
+  try {
+    res.json({
+      success: true,
+      data: {
+        id: null,
+        email: null,
+        name: 'Visitante',
+        authenticated: false
+      }
+    })
+  } catch (error) {
+    logger.error('Erro ao obter usuário:', error)
+    res.status(500).json({
+      success: false,
+      message: 'Erro ao obter informações do usuário'
+    })
+  }
+})
+
+// Rota para soma/estatísticas
+app.get('/api/sum', generalLimiter, async (req, res) => {
+  try {
+    res.json({
+      success: true,
+      data: {
+        total_users: 0,
+        total_games: 0,
+        total_winnings: 0.00
+      }
+    })
+  } catch (error) {
+    logger.error('Erro ao obter estatísticas:', error)
+    res.status(500).json({
+      success: false,
+      message: 'Erro ao obter estatísticas'
+    })
+  }
+})
+
+// Rota para configurações
+app.get('/api/cec', generalLimiter, async (req, res) => {
+  try {
+    res.json({
+      success: true,
+      data: {
+        maintenance: false,
+        version: '1.0.0',
+        features: {
+          registration: true,
+          games: true,
+          withdraw: true
+        }
+      }
+    })
+  } catch (error) {
+    logger.error('Erro ao obter configurações:', error)
+    res.status(500).json({
+      success: false,
+      message: 'Erro ao obter configurações'
+    })
+  }
+})
+
+/**
  * Rotas da API
  */
 app.use('/api/auth', authRoutes)
