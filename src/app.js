@@ -85,6 +85,22 @@ app.get('/health', (req, res) => {
 })
 
 /**
+ * Rota de configuração para o frontend
+ */
+app.get('/api/core', (req, res) => {
+  res.json({
+    success: true,
+    message: 'API Core configurada',
+    endpoints: {
+      auth: '/api/auth',
+      scratch: '/api/scratch', 
+      wallet: '/api/wallet'
+    },
+    version: '1.0.0'
+  })
+})
+
+/**
  * Rotas da API
  */
 app.use('/api/auth', authRoutes)

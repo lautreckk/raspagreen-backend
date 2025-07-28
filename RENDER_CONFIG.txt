@@ -1,0 +1,61 @@
+🚀 CONFIGURAÇÃO PARA RENDER.COM
+==========================================
+
+COPIE ESTAS VARIÁVEIS NO RENDER:
+(Environment Variables - Name e Value)
+
+✅ OBRIGATÓRIAS:
+------------------
+SUPABASE_URL
+https://seu-projeto.supabase.co
+
+SUPABASE_ANON_KEY
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
+SUPABASE_SERVICE_ROLE_KEY
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
+JWT_SECRET
+sua_chave_jwt_super_secreta_aqui_minimo_32_caracteres
+
+NODE_ENV
+production
+
+FRONTEND_URL
+https://seu-site.netlify.app
+
+🔧 OPCIONAIS:
+------------------
+RATE_LIMIT_WINDOW_MS
+900000
+
+RATE_LIMIT_MAX_REQUESTS
+100
+
+DEFAULT_RTP
+0.85
+
+INITIAL_BALANCE
+1000
+
+==========================================
+📋 COMO USAR NO RENDER:
+
+1. Acesse render.com → Seu Web Service
+2. Vá em "Environment" 
+3. Clique "Add Environment Variable"
+4. Name: SUPABASE_URL
+5. Value: https://seu-projeto.supabase.co
+6. Repita para cada variável
+
+🚨 IMPORTANTE: 
+- NÃO use aspas nos valores
+- Substitua os valores exemplo pelos reais
+- NODE_ENV deve ser "production"
+
+🔗 ONDE OBTER:
+
+SUPABASE: supabase.com → Projeto → Settings → API
+JWT_SECRET: Use gerador de senhas (32+ chars)
+FRONTEND_URL: URL do Netlify após deploy
+==========================================
