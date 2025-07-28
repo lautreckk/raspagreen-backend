@@ -1,0 +1,66 @@
+🚀 VARIÁVEIS PARA RENDER.COM
+==========================================
+
+COPIE AS VARIÁVEIS ABAIXO NO RENDER:
+(Environment Variables - Name e Value)
+
+✅ OBRIGATÓRIAS:
+------------------
+Name: SUPABASE_URL
+Value: https://seu-projeto.supabase.co
+
+Name: SUPABASE_ANON_KEY  
+Value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
+Name: SUPABASE_SERVICE_ROLE_KEY
+Value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
+Name: JWT_SECRET
+Value: sua_chave_jwt_super_secreta_aqui_minimo_32_caracteres
+
+Name: NODE_ENV
+Value: production
+
+Name: FRONTEND_URL
+Value: https://seu-site.netlify.app
+
+🔧 OPCIONAIS (mas recomendadas):
+------------------
+Name: RATE_LIMIT_WINDOW_MS
+Value: 900000
+
+Name: RATE_LIMIT_MAX_REQUESTS
+Value: 100
+
+Name: DEFAULT_RTP
+Value: 0.85
+
+Name: INITIAL_BALANCE
+Value: 1000
+
+==========================================
+📋 COMO CONFIGURAR NO RENDER:
+
+1. Acesse render.com → Seu Web Service
+2. Vá em "Environment" 
+3. Clique "Add Environment Variable"
+4. Copie Name e Value de cada variável acima
+5. IMPORTANTE: Não use aspas nos valores!
+
+🔗 ONDE OBTER AS CREDENCIAIS:
+
+SUPABASE:
+- Acesse supabase.com
+- Vá no seu projeto
+- Settings → API
+- Copie URL e Keys
+
+JWT_SECRET:
+- Use um gerador: https://passwordsgenerator.net/
+- Mínimo 32 caracteres
+- Exemplo: 8h3f9k2m1p7w5e6r9t0y2u3i8o5q1a4s6d7f
+
+FRONTEND_URL:
+- Será a URL do Netlify após deploy
+- Exemplo: https://raspagreen-xyz123.netlify.app
+==========================================
