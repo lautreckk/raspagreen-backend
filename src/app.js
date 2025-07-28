@@ -104,8 +104,8 @@ app.get('/api/core', (req, res) => {
  * Rotas de compatibilidade para frontend
  */
 
-// Rota para obter saldo do usuário
-app.get('/api/user/balance', generalLimiter, async (req, res) => {
+// Rota para obter saldo do usuário (sem rate limit temporariamente)
+app.get('/api/user/balance', async (req, res) => {
   try {
     // Simulação temporária - substitua pela lógica real de autenticação
     res.json({
@@ -125,8 +125,8 @@ app.get('/api/user/balance', generalLimiter, async (req, res) => {
   }
 })
 
-// Rota para informações do usuário
-app.get('/api/user', generalLimiter, async (req, res) => {
+// Rota para informações do usuário (sem rate limit temporariamente)
+app.get('/api/user', async (req, res) => {
   try {
     res.json({
       success: true,
@@ -146,8 +146,8 @@ app.get('/api/user', generalLimiter, async (req, res) => {
   }
 })
 
-// Rota para soma/estatísticas
-app.get('/api/sum', generalLimiter, async (req, res) => {
+// Rota para soma/estatísticas (sem rate limit temporariamente)
+app.get('/api/sum', async (req, res) => {
   try {
     res.json({
       success: true,
@@ -166,8 +166,8 @@ app.get('/api/sum', generalLimiter, async (req, res) => {
   }
 })
 
-// Rota para configurações
-app.get('/api/cec', generalLimiter, async (req, res) => {
+// Rota para configurações (sem rate limit temporariamente)
+app.get('/api/cec', async (req, res) => {
   try {
     res.json({
       success: true,
@@ -186,6 +186,26 @@ app.get('/api/cec', generalLimiter, async (req, res) => {
     res.status(500).json({
       success: false,
       message: 'Erro ao obter configurações'
+    })
+  }
+})
+
+// Rota para execução/run (compatibilidade)
+app.post('/api/run', async (req, res) => {
+  try {
+    res.json({
+      success: true,
+      message: 'Run endpoint disponível',
+      data: {
+        status: 'ok',
+        timestamp: new Date().toISOString()
+      }
+    })
+  } catch (error) {
+    logger.error('Erro no endpoint run:', error)
+    res.status(500).json({
+      success: false,
+      message: 'Erro no endpoint run'
     })
   }
 })
