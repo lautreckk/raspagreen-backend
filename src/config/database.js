@@ -6,22 +6,32 @@ dotenv.config()
 const supabaseUrl = process.env.SUPABASE_URL
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
 
-if (!supabaseUrl || !supabaseServiceKey) {
-  throw new Error('Missing Supabase environment variables')
+// Exportar clientes apenas se variáveis estão disponíveis
+let supabase = null
+let supabasePublic = null
+
+if (supabaseUrl && supabaseServiceKey) {
+  supabase = createClient(supabaseUrl, supabaseServiceKey)
+  
+  if (process.env.SUPABASE_ANON_KEY) {
+    supabasePublic = createClient(supabaseUrl, process.env.SUPABASE_ANON_KEY)
+  }
+} else {
+  console.warn('⚠️ Variáveis do Supabase não configuradas - rodando sem banco')
 }
 
-// Cliente principal com service role para operações administrativas
-export const supabase = createClient(supabaseUrl, supabaseServiceKey)
-
-// Cliente público para operações de usuário
-export const supabasePublic = createClient(
-  supabaseUrl, 
-  process.env.SUPABASE_ANON_KEY
-)
+// Exportar clientes (podem ser null)
+export { supabase, supabasePublic }
 
 // Função para verificar conexão com o banco
 export async function testConnection() {
   try {
+    // Se não há cliente configurado, retorna false
+    if (!supabase) {
+      console.warn('⚠️ Cliente Supabase não configurado')
+      return false
+    }
+    
     const { data, error } = await supabase
       .from('scratch_categories')
       .select('count')
