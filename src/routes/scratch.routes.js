@@ -83,4 +83,26 @@ router.put('/games/:gameId/complete',
   scratchController.completeGame.bind(scratchController)
 )
 
+// POST /scratch/claim - Reivindicar prêmio (compatibilidade com Netlify function)
+router.post('/claim', 
+  verifyToken,
+  async (req, res) => {
+    try {
+      res.json({
+        success: true,
+        message: 'Claim endpoint disponível',
+        data: {
+          available: true,
+          timestamp: new Date().toISOString()
+        }
+      })
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        message: 'Erro no endpoint claim'
+      })
+    }
+  }
+)
+
 export default router
